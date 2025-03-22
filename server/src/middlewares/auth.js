@@ -2,15 +2,27 @@ const authorize = (req, res, next) => {
     try {
         const authorization = req.headers.authorization;
 
-        if(!authorization) {
+        if (!authorization) {
             return res.status(401).send('Unauthorized');
         }
 
         const token = authorization.split(' ')[1];
 
-        if(!token) {
+        if (!token) {
             return res.status(401).send('Unauthorized');
         }
+
+        const user = await prisma.user.findUnique({
+            where: {
+                id: token
+            }
+        })
+
+        if (!user) {
+            return res.status(401).send('Unauthorized');
+        }
+
+        req.user = user;
 
         next();
     } catch (err) {
@@ -18,3 +30,5 @@ const authorize = (req, res, next) => {
         return res.status(500).send('Internal server error');
     }
 }
+
+module.exports = {authorize};
