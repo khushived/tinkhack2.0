@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+const AUTH_TOKEN = 'logistics_token'
+
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
 
@@ -22,7 +24,7 @@ export default function Login() {
         }
       );
       const data = await response.json();
-      window.localStorage.setItem("token", data.token);
+      window.localStorage.setItem(AUTH_TOKEN, data.token);
       if (response.ok) {
         alert("Sign-Up successful!");
       } else {
