@@ -74,3 +74,42 @@ model Driver {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model User {
+  id String @id @default(cuid())
+
+  name     String
+  phone    String
+  email    String
+  password String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Package   Package[]
+}
+
+model Package {
+  id String @id @default(cuid())
+
+  owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId String
+
+  name String
+
+  fromAddress String
+  fromLat     Float
+  fromLng     Float
+
+  toAddress String
+  toLat     Float
+  toLng     Float
+
+  xDimension Float
+  yDimension Float
+  zDimension Float
+
+  weight Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
