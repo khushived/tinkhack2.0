@@ -2,8 +2,6 @@ const prisma = require("../lib/prisma");
 
 const getAllHubs = async (req, res) => {
   try {
-    const { user } = req;
-
     const hubs = await prisma.hub.findMany({});
 
     return res.status(200).json({
@@ -17,9 +15,7 @@ const getAllHubs = async (req, res) => {
 
 const createHub = async (req, res) => {
   try {
-    const { user } = req;
-
-    const { name, address, lat, lng } = req.query;
+    const { name, address, lat, lng } = req.body;
 
     if (!name || !address || !lat || !lng) {
       return res
@@ -51,7 +47,6 @@ const createHub = async (req, res) => {
 
 const getHubById = async (req, res) => {
   try {
-    const { user } = req;
     const { id } = req.params;
 
     const hub = await prisma.hub.findUnique({

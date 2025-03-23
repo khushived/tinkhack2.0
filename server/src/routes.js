@@ -13,6 +13,8 @@ const {
   getWarehouseById,
 } = require("./controllers/warehouses");
 
+const { getPickUps, getDropOffs } = require("./controllers/deliveries");
+
 const { calculateDeliveryPath } = require("./controllers/deliveries");
 
 const { signUp, login } = require("./controllers/auth");
@@ -22,17 +24,19 @@ router.post("/auth/signup", signUp);
 router.post("/auth/login", login);
 
 router.get("/packages", authorize, getAllPackages);
-router.get('/packages/:id', getPackageById);
-router.post('/packages', createPackage);
+router.get("/packages/:id", authorize, getPackageById);
+router.post("/packages", authorize, createPackage);
 
-router.get("/hubs", getAllHubs);
-router.get("/hubs/:id", getHubById);
-router.post("/hubs", createHub);
+router.get("/hubs", authorize, getAllHubs);
+router.get("/hubs/:id", authorize, getHubById);
+router.post("/hubs", authorize, createHub);
 
-router.get("/warehouses", getAllWarehouses);
-router.get("/warehouses/:id", getWarehouseById);
-router.post("/warehouses", createWarehouse);
+router.get("/warehouses", authorize, getAllWarehouses);
+router.get("/warehouses/:id", authorize, getWarehouseById);
+router.post("/warehouses", authorize, createWarehouse);
 
-router.get("/deliveries/:packageId", calculateDeliveryPath);
+router.get("/deliveries/:packageId", authorize, calculateDeliveryPath);
+router.get("/manage/pickups/:hubId", authorize, getPickUps);
+router.get('/manage/dropoffs/:hubId', authorize, getDropOffs);
 
 module.exports = router;

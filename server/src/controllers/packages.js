@@ -31,8 +31,7 @@ const createPackage = async (req, res) => {
       yDimension,
       zDimension,
       weight,
-      status,
-    } = req.query;
+    } = req.body;
 
     if (
       !name &&

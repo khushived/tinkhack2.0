@@ -1,6 +1,15 @@
+const prisma = require("../lib/prisma");
+
 const authorize = async (req, res, next) => {
   try {
-    const token = req.cookies?.token;
+
+    const authorization  = req.headers.authorization;
+
+    if (!authorization) {
+      return res.status(401).send("Unauthorized");
+    }
+
+    const token = authorization.split(" ")[1];
 
     if (!token) {
       return res.status(401).send("Unauthorized");
