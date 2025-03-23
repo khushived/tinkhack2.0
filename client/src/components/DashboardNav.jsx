@@ -1,17 +1,18 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { 
   LayoutDashboard, Package, Truck, Users, ShoppingCart, 
-  BarChart3, Settings, AlertCircle, Map, Home, Warehouse 
-} from "lucide-react"
+  BarChart3, Settings, AlertCircle, Map, Home, Warehouse, 
+  Pencil
+} from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export function DashboardNav() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const navItems = [
     {
@@ -60,19 +61,29 @@ export function DashboardNav() {
       icon: Home,
     },
     {
+      title: "Edit Hub",
+      href: "/dashboard/edit-hub",
+      icon: Pencil,
+    },
+    {
       title: "Add Warehouse",
       href: "/dashboard/add-warehouse",
       icon: Warehouse,
+    },
+    {
+      title: "Edit Warehouse",
+      href: "/dashboard/edit-warehouse",
+      icon: Pencil,
     },
     {
       title: "View Map",
       href: "/dashboard/map",
       icon: Map,
     },
-  ].map(item => ({
+  ].map((item) => ({
     ...item,
     variant: pathname === item.href ? "default" : "ghost",
-  }))
+  }));
 
   return (
     <nav className="grid gap-1 px-2">
@@ -81,7 +92,10 @@ export function DashboardNav() {
           key={index}
           variant={item.variant}
           size="sm"
-          className={cn("justify-start", item.variant === "default" && "bg-primary text-primary-foreground")}
+          className={cn(
+            "justify-start",
+            item.variant === "default" && "bg-primary text-primary-foreground"
+          )}
           asChild
         >
           <Link href={item.href}>
@@ -91,5 +105,5 @@ export function DashboardNav() {
         </Button>
       ))}
     </nav>
-  )
+  );
 }
