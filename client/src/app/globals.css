@@ -111,13 +111,23 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+
+/* ✅ FIX: Ensure the map takes full screen */
+html, body, #__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 #map {
   height: 100vh;
+  width: 100vw;
 }
 
 .leaflet-container {
-  height: 600px;
-  width: 100%;
+  height: 100vh !important;
+  width: 100vw !important;
 }
 
 .leaflet-div-icon {

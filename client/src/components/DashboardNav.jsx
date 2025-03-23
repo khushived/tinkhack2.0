@@ -1,14 +1,14 @@
 "use client"
 
-
-
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Package, Truck, Users, ShoppingCart, BarChart3, Settings, AlertCircle } from "lucide-react"
+import { 
+  LayoutDashboard, Package, Truck, Users, ShoppingCart, 
+  BarChart3, Settings, AlertCircle, Map, Home, Warehouse 
+} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-
 
 export function DashboardNav() {
   const pathname = usePathname()
@@ -18,51 +18,61 @@ export function DashboardNav() {
       title: "Overview",
       href: "/dashboard",
       icon: LayoutDashboard,
-      variant: pathname === "/dashboard" ? "default" : "ghost",
     },
     {
       title: "Orders",
       href: "/dashboard/orders",
       icon: ShoppingCart,
-      variant: pathname === "/dashboard/orders" ? "default" : "ghost",
     },
     {
       title: "Shipments",
       href: "/dashboard/shipments",
       icon: Truck,
-      variant: pathname === "/dashboard/shipments" ? "default" : "ghost",
     },
     {
       title: "Inventory",
       href: "/dashboard/inventory",
       icon: Package,
-      variant: pathname === "/dashboard/inventory" ? "default" : "ghost",
     },
     {
       title: "Customers",
       href: "/dashboard/customers",
       icon: Users,
-      variant: pathname === "/dashboard/customers" ? "default" : "ghost",
     },
     {
       title: "Analytics",
       href: "/dashboard/analytics",
       icon: BarChart3,
-      variant: pathname === "/dashboard/analytics" ? "default" : "ghost",
     },
     {
       title: "Issues",
       href: "/dashboard/issues",
       icon: AlertCircle,
-      variant: pathname === "/dashboard/issues" ? "default" : "ghost",
     },
     {
       title: "Settings",
       href: "/dashboard/settings",
       icon: Settings,
-      variant: pathname === "/dashboard/settings" ? "default" : "ghost",
     },
-  ]
+    {
+      title: "Add Hub",
+      href: "/dashboard/add-hub",
+      icon: Home,
+    },
+    {
+      title: "Add Warehouse",
+      href: "/dashboard/add-warehouse",
+      icon: Warehouse,
+    },
+    {
+      title: "View Map",
+      href: "/dashboard/map",
+      icon: Map,
+    },
+  ].map(item => ({
+    ...item,
+    variant: pathname === item.href ? "default" : "ghost",
+  }))
 
   return (
     <nav className="grid gap-1 px-2">
@@ -83,4 +93,3 @@ export function DashboardNav() {
     </nav>
   )
 }
-

@@ -1,13 +1,13 @@
 "use client";
 
-import MapView from "@/components/Mapview";
-import React from "react";
-import { useState } from "react";
+import MapView from "@/components/MapView";
+import React, { useState } from "react";
 
-const page = () => {
+export default function Page() {
   const [showMap, setShowMap] = useState(false);
+
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-screen w-full">
       {!showMap ? (
         <div className="text-center space-y-4">
           <h1 className="text-3xl font-semibold">Welcome to CrowdRoute Map</h1>
@@ -19,10 +19,10 @@ const page = () => {
           </button>
         </div>
       ) : (
-        <MapView />
+        <div className="h-full w-full">
+          <MapView />
+        </div>
       )}
     </div>
   );
-};
-
-export default page;
+}
