@@ -55,7 +55,7 @@ model Vehicle {
   vehicleType VehicleType
 
   name     String
-  type     String
+  type     String  
   capacity Float
 
   createdAt DateTime @default(now())
