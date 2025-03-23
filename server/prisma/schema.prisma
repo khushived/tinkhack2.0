@@ -88,6 +88,12 @@ model User {
   Package   Package[]
 }
 
+enum PackageStatus {
+  PENDING
+  INTRANSIT
+  DELIVERED
+}
+
 model Package {
   id String @id @default(cuid())
 
@@ -109,6 +115,8 @@ model Package {
   zDimension Float
 
   weight Float
+
+  status PackageStatus @default(PENDING)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
