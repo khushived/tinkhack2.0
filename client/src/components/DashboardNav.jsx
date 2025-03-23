@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { 
   LayoutDashboard, Package, Truck, Users, ShoppingCart, 
   BarChart3, Settings, AlertCircle, Map, Home, Warehouse, 
-  Pencil
+  Pencil, Eye
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -64,6 +64,11 @@ export function DashboardNav() {
       title: "Edit Hub",
       href: "/dashboard/edit-hub",
       icon: Pencil,
+    },
+    {
+      title: "View Hubs",  // ✅ New "View Hubs" option
+      href: "/dashboard/view-hubs",
+      icon: Eye,
     },
     {
       title: "Add Warehouse",
